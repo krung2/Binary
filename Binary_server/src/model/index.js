@@ -10,5 +10,16 @@ const sequelize = new Sequelize('binary', 'root', '1234', {
     },
 });
 
-const DogFun = require('./Dog')
-const UserFun = require('./User')
+const DogFun = require('./Dog');
+const UserFun = require('./User');
+
+module.exports = {
+    User: UserFun(sequelize, Sequelize),
+    Dog: DogFun(sequelize, Sequelize),
+}
+
+sequelize.sync().then(() => {
+    console.log('[Model] Databases sync');
+}).catch((err) => {
+    console.log(err.massage);
+});
