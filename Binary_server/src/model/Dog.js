@@ -5,9 +5,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true
     },
     userId: {
       field: 'user_id',
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    dogName: {
+      field: 'dog_name',
       type: DataTypes.STRING,
       allowNull: false,
     },
