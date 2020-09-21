@@ -29,3 +29,38 @@ exports.login = async (req, res) => {
         });
     }
 }
+
+exports.register =  async (req, res) => {
+    const { body } = req;
+
+    try {
+        const data = await models.User.findOne({
+            where: {
+                id: body.id,
+            },
+        });
+
+        if (data) {
+            return res.status(401).json({
+                message: "이미 사용중인 ID입니다",
+            });
+        }
+
+        await models.User.create({
+            id: body.id,
+            pw: body.pw,
+            name: body.name,
+            adress: body.adress,
+        })
+
+        console.log("회원가입 성공!");
+        return res.status(200).json({
+            message: "회원가입 성공!",
+        });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            message: "서버 오류",
+        });
+    }
+}
