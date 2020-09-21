@@ -6,8 +6,8 @@ exports.login = async (req, res) => {
     try {
         const user = await models.User.findOne({
             where: {
-                userId: body.userId,
-                userPw: body.userPw,
+                id: body.id,
+                pw: body.pw,
             },
         });
 
