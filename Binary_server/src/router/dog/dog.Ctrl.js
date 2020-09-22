@@ -1,7 +1,8 @@
-const { raw } = require('body-parser');
 const models = require('../../model');
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
-exports.getDogs = async (req, res) => {
+exports.getDog = async (req, res) => {
     try {
         const dog = await models.Dog.findOne ({
             where: {
@@ -24,7 +25,7 @@ exports.getDogs = async (req, res) => {
     }
 }
 
-exports.getDog = async (req, res) => {
+exports.getDogs = async (req, res) => {
     try {
         let dogs = []
         if (req.query.keyword) {
