@@ -1,5 +1,4 @@
 const { raw } = require('body-parser');
-const model = require('../../model');
 const models = require('../../model');
 
 exports.getDogs = async (req, res) => {
@@ -13,7 +12,7 @@ exports.getDogs = async (req, res) => {
 
         res.status(200).json ({
             data: {
-                post,
+                dog,
             },
         });
 
@@ -89,7 +88,7 @@ exports.postDog = async (req, res) => {
 }
 
 exports.modifyDog = async (req, res) => {
-    const { body, user } = req;
+    const { body } = req;
     const { idx } = req.params;
 
     try {
@@ -100,7 +99,7 @@ exports.modifyDog = async (req, res) => {
         });
 
         return res.status(200).json ({
-            message: "게시글 수정 성공!",
+            message: "정보 수정 성공!",
         });
 
     } catch (err) {
