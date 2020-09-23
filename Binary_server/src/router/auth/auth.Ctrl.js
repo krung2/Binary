@@ -7,20 +7,32 @@ exports.login = async (req, res) => {
         const user = await models.User.findOne({
             where: {
                 id: body.id,
+            },
+        });
+
+        if(!user) {
+            return res.status(401).json({
+                message: "아이디를 확인해주세요!",
+            });
+        }
+
+        const user1 = await models.User.findOne({
+            where: {
+                id: user.id,
                 pw: body.pw,
             },
         });
 
-        if (user) {
-            console.log("로그인 성공!");
-            return res.status(200).json({
-                message: "로그인 성공!",
+        if(!user1) {
+            return res.status(401).json({
+                message: "비밀번호를 학인해주세요!",
             });
-        };
+        }
 
-        return res.status(401).json({
-            message: "로그인 실패...",
+        return res.status(200).json({
+            message: "로그인 성공!",
         });
+
 
     } catch (err) {
         console.log(err);
