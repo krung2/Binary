@@ -16,7 +16,6 @@ exports.findHospital = async (req, res) => {
             });
         } else {
             hospitals = await models.Hospital.findAll ({
-                attributes: ['hospitalName'],
             });
         }
 
