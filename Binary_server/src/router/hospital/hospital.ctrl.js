@@ -2,7 +2,7 @@ const models = require('../../model');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
-exports.findHospital = async (req, res) => {
+exports.GetHospital = async (req, res) => {
     try {
         let hospitals = []
         if (req.query.keyword) {
@@ -25,6 +25,7 @@ exports.findHospital = async (req, res) => {
                 hospitals,
             }
         });
+
     } catch (err) {
         console.log(err);
         return res.status(500).json({
